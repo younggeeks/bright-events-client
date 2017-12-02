@@ -1,0 +1,69 @@
+
+            {% extends "authenticated_master.html" %}
+{% block title %}Home{% endblock %}
+{% block body %}
+
+             <div class="container top-spacing-10">
+
+                <h5 class="centered"><span  class="mdl-badge " data-badge="{{ count }}">My Events</span></h5>
+                <hr>
+              {% if count <= 0 %}
+         <div class="ui warning message">
+    <div class="header">No Events</div>
+    <p>Looks like You haven't Posted any event yet , To get started Click <a href="{{ url_for("create_event") }}">Here.</a></p>
+  </div>
+    {% else  %}
+               <div class="row">
+                   <table class="mdl-data-table mdl-js-data-table  mdl-shadow--2dp mdl-textfield--full-width">
+                       <thead>
+                       <tr>
+                           <th class="mdl-data-table__cell--non-numeric"> <i class="fa fa-address-card"></i> Event Name</th>
+                           <th class="mdl-data-table__cell--non-numeric"><i class="fa fa-calendar"></i> Date</th>
+                           <th> <i class="fa fa-map"></i> Location</th>
+                           <th>Action</th>
+                       </tr>
+                       </thead>
+                       <tbody>
+                       {% for event in events %}
+                       <tr>
+                           <td class="mdl-data-table__cell--non-numeric"><a class="table-link" href="{{ url_for("view_event", event_id=event.id) }}">{{ event.name }}</a></td>
+                           <td class="mdl-data-table__cell--non-numeric">{{ event.start_date }}</td>
+                           <td>{{ event.address }}</td>
+                           <td>
+                               <a href="{{ url_for(".edit_event", event_id=event.id) }}" class="mdl-button mdl-js-button mdl-button--icon">
+                               <i class="material-icons">edit</i>
+                               </a>
+                           </a>
+                               <a href="{{ url_for(".delete_event", event_id=event.id) }}" class="mdl-button mdl-js-button mdl-button--icon">
+                               <i class="material-icons">delete</i>
+                               </a>
+                           </td>
+                       </tr>
+                       {% endfor %}
+                       </tbody>
+                   </table>
+               </div>
+
+                  {% endif %}
+             </div>
+
+{#<div class="ui mini modal" style="margin-top: -92.5px; display: block !important;">#}
+{#    <div class="header">#}
+{#      Delete Event ?#}
+{#    </div>#}
+{#    <div class="content">#}
+{#      <p>Are You sure You want To Delete This Event?</p>#}
+{#    </div>#}
+{#    <div class="actions">#}
+{#      <button class="ui negative button">#}
+{#        No#}
+{#      </button>#}
+{#      <button class="ui positive button">#}
+{#        Yes#}
+{#      </button>#}
+{#    </div>#}
+{#  </div>#}
+
+{% endblock %}
+
+

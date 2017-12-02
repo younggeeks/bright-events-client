@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Bright Events ">
+    <meta name="keywords" content="Events, bright,andela , bootcamp,andela-kenya">
+    <meta name="author" content="Samwel Charles">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bright Events </title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='material_assets/material.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/bootstrap-grid.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='custom/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='font-awesome/css/font-awesome.min.css') }}">
+    <script src="{{ url_for('static',filename='material_assets/material.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/angular.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/custom.js') }}"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+<body>
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <header class="mdl-layout__header">
+        <div class="mdl-layout__header-row">
+            <img class="bright-logo" src="{{ url_for('static',filename='img/logo.png') }}">
+            <!--this will pull the rest of the menu to the right-->
+            <div class="mdl-layout-spacer"></div>
+            <!-- When user is logged in dashboard will appear otherwise they will see login -->
+            <nav class="mdl-navigation">
+                {%  if "username" in session %}
+                     <a class="mdl-navigation__link" href="/dashboard"><i class="fa fa-book fa-fw"></i>Dashboard</a>
+                {% else %}
+                <a class="mdl-navigation__link" href="/login"><i class="fa fa-lock fa-fw"></i>Login</a>
+                {% endif %}
+            </nav>
+        </div>
+    </header>
+    <div class="mdl-layout__drawer"><span class="mdl-layout-title">Top Categories</span>
+        <hr>
+        <nav class="mdl-navigation">
+            <a class="mdl-navigation__link" href=""><i class="fa fa-free-code-camp"></i> Code Camps</a>
+            <a class="mdl-navigation__link" href=""><i class="fa fa-meetup"></i> Meetup</a>
+            <a class="mdl-navigation__link" href=""><i class="fa fa-graduation-cap"></i> Graduation Party</a>
+            <a class="mdl-navigation__link" href=""><i class="fa fa-code"></i> Bootcamps</a>
+        </nav>
+    </div>
+
+
+
+    <main class="mdl-layout__content">
+        <div class="page-content">
+            <div class="container top-spacing-10">
+                {% block body %}
+                {% endblock %}
+            </div>
+        </div>
+    </main>
+</div>
+
+
+</body>
+</html>
+

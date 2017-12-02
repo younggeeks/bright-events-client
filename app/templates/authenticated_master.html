@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Bright Events ">
+    <meta name="keywords" content="Events, bright,andela , bootcamp,andela-kenya">
+    <meta name="author" content="Samwel Charles">
+    <title>Bright Events </title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='material_assets/material.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/bootstrap-grid.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='custom/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/dropdown.min.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/form.min.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/transition.min.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/modal.min.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/message.min.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/button.min.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='font-awesome/css/font-awesome.min.css') }}">
+    <script src="{{ url_for('static',filename='js/jquery-3.2.1.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='material_assets/material.min.js') }}"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+     <script src="{{ url_for('static',filename='js/Chart.min.js') }}"></script>
+
+</head>
+<body>
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <header class="mdl-layout__header">
+        <div class="mdl-layout__header-row">
+            <img class="bright-logo" src="{{ url_for('static',filename='img/logo.png') }}">
+            <!--this will pull the rest of the menu to the right-->
+            <div class="mdl-layout-spacer"></div>
+            <!-- When user is logged in dashboard will appear otherwise they will see login -->
+            <nav class="mdl-navigation">
+            {% if "username" in session %}
+                <a class="mdl-navigation__link" href="{{ url_for("dashboard") }}"><i class="fa fa-book fa-fw"></i>Dashboard</a>
+                <a class="mdl-navigation__link" href=""><i class="fa fa-lock fa-fw"></i>{{ session["username"] }}</a>
+                <button id="dashboard-menu"
+        class="mdl-button mdl-js-button mdl-button--icon">
+  <i class="material-icons">more_vert</i>
+</button>
+            {% else %}
+    <li class="mdl-menu__item"><a href="{{ url_for("login") }}"><i class="fa fa-sign-out"></i> Login</a></li>
+    {% endif %}
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
+    for="dashboard-menu">
+    {% if "username" in session %}
+  <li class="mdl-menu__item"><a href="{{ url_for("create_event") }}"> <i class="fa fa-plus"></i> Add Event</a></li>
+  <li class="mdl-menu__item"><a href="{{ url_for("logout") }}"><i class="fa fa-sign-out"></i> Sign out</a></li>
+    {% else %}
+    <li class="mdl-menu__item"><a href="{{ url_for("logout") }}"><i class="fa fa-sign-out"></i> Login</a></li>
+    {% endif %}
+</ul>
+            </nav>
+        </div>
+    </header>
+    <div class="mdl-layout__drawer"><span class="mdl-layout-title">My Account</span>
+        <hr>
+        <nav class="mdl-navigation">
+            <a class="mdl-navigation__link" href="{{ url_for('get_my_events') }}"> <i class="fa fa-user-circle"></i> My Events</a>
+            <a class="mdl-navigation__link" href="#"><i class="fa fa-cogs"></i> Settings</a>
+        </nav>
+    </div>
+    <main class="mdl-layout__content">
+        <div class="page-content">
+                 {% block body %}
+                {% endblock %}
+              </div>
+    </main>
+</div>
+
+
+{# <script src="{{ url_for('static',filename='custom/scripts.js') }}"></script>#}
+<script src="{{ url_for('static',filename='js/form.min.js') }}"></script>
+<script src="{{ url_for('static',filename='js/transition.min.js') }}"></script>
+<script src="{{ url_for('static',filename='js/dropdown.min.js') }}"></script>
+<script src="{{ url_for('static',filename='js/modal.min.js') }}"></script>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Bright Events ">
+    <meta name="keywords" content="Events, bright,andela , bootcamp,andela-kenya">
+    <meta name="author" content="Samwel Charles">
+    <title>Bright Events </title>
+     <link rel="stylesheet" href="{{ url_for('static',filename='material_assets/material.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/bootstrap-grid.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='custom/main.css') }}">
+     <link rel="stylesheet" href="{{ url_for('static',filename='css/input.css')}}">
+     <link rel="stylesheet" href="{{ url_for('static',filename='css/form.min.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='font-awesome/css/font-awesome.min.css') }}">
+    <script src="{{ url_for('static',filename='material_assets/material.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/angular.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/custom.js') }}"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+<body>
+
+<div class="container " >
+    <div class="col-md-4 offset-md-4 col-10 offset-1 auth-box mdl-shadow--3dp">
+        <h5 class="centered">Login To Bright Events</h5>
+        <hr>
+        <form  action="{{ url_for('login') }}" method="post">
+            <div class="ui large fluid  input">
+                <input type="text" name="email" placeholder="Enter Email..."  >
+            </div>
+            <br>
+            <div class="ui fluid input">
+                <input type="password" name="password" class="form-control" id="password" placeholder="Enter Password"  required>
+            </div>
+            <br>
+            {% with messages = get_flashed_messages() %}
+              {% if messages %}
+                {% for message in messages %}
+                 <p class="centered error" ng-if="hasErrored">{{ message }}</p>
+                {% endfor %}
+              {% endif %}
+            {% endwith %}
+
+            <div class="centered">
+                <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
+                    Login
+                </button>
+            </div>
+            <br>
+            <div class="form-group centered link-button">
+                <a href="/signup">Don't Have An Account Yet? Signup</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>
+

@@ -1,0 +1,76 @@
+
+            {% extends "authenticated_master.html" %}
+{% block title %}Home{% endblock %}
+{% block body %}
+
+            <div class="container">
+    <div class="col-md-6 offset-md-3 col-10 offset-1 auth-box mdl-shadow--3dp">
+        <h5 class="centered">Edit {{ event.name }}</h5>
+        <hr>
+        <form  action="{{ url_for('edit_event', event_id=event.id) }}" method="POST" class="ui form ">
+
+            <div class="ui  fluid large  input">
+                <input type="text" value="{{ event.name }}" name="name" placeholder="Enter Event's Name" required="required">
+            </div>
+            <br>
+            <div class="ui large fluid  input">
+                <input type="text" value="{{ event.address }}" name="address" placeholder="Enter Event Address (Location)" required="required" >
+            </div>
+            <br>
+           <div class="field">
+                <label>Event Description</label>
+                <textarea  name="description" rows="2" required="required">{{ event.description }}</textarea>
+           </div>
+            <div class="ui large fluid  input">
+                <input type="date" value="{{ event.start_date }}" name="start_date" placeholder=""  required="required">
+            </div>
+            <br>
+            <div class="ui large fluid  input">
+                <input type="date" value="{{ event.end_date }}" name="end_date" placeholder=""  required="required">
+            </div>
+            <br>
+            <div class="ui large fluid  input">
+                <input type="text" value="{{ event.price }}" name="price" placeholder="Enter Price (Ksh)" required="required">
+            </div>
+            <br>
+
+            <div class="ui fluid search selection dropdown">
+                  <input type="hidden" name="category" value="{{ event.category }}" required="required">
+                  <i class="dropdown icon"></i>
+                  <div class="default text">Select Category</div>
+                  <div class="menu">
+                  <div class="item" >Bootcamps</div>
+                  <div class="item" >Hackathon</div>
+                  <div class="item" >Marathon</div>
+                  </div>
+            </div>
+            <br>
+
+
+            {% with messages = get_flashed_messages() %}
+              {% if messages %}
+                {% for message in messages %}
+                 <p class="centered error" ng-if="hasErrored">{{ message }}</p>
+                {% endfor %}
+              {% endif %}
+            {% endwith %}
+
+            <div class="centered">
+                <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
+                    Update Event Details
+                </button>
+            </div>
+            <br>
+        </form>
+    </div>
+</div>
+ <script>
+ $(document).ready(function(){
+        $('.selection.dropdown').dropdown();
+    })
+</script>
+
+
+{% endblock %}
+
+

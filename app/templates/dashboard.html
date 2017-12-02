@@ -1,0 +1,61 @@
+
+            {% extends "authenticated_master.html" %}
+{% block title %}Home{% endblock %}
+{% block body %}
+
+            <div class="container ">
+               {% if graphs.counts <= 0 or graphs.count == [] %}
+         <div class="ui warning message">
+    <div class="header">No Events</div>
+    <p>Looks like You haven't Posted any event yet , To get started Click <a href="{{ url_for("create_event") }}">Here.</a></p>
+  </div>
+    {% else  %}
+                <h5 class="centered">My Events Report </h5>
+
+                <canvas id="eventsChart"></canvas>
+            </div>
+
+<script>
+
+  var ctx = document.getElementById("eventsChart") ? document.getElementById("eventsChart").getContext('2d') : "" ;
+  if (ctx == ""){
+      console.log("Empyt ctx")
+
+  }else{
+  var eventsChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels:{{  graphs.categories | tojson }},
+        datasets: [{
+            label: 'Number of Events',
+            data: {{ graphs.counts | tojson }},
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    },
+  });
+  }
+
+    </script>
+    {% endif %}
+{% endblock %}
+
+
