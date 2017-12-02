@@ -40,7 +40,10 @@ def dashboard():
             "counts": counts
         })
 
-    return render_template("dashboard.html", events=res.get("events"), graphs=None)
+    return render_template("dashboard.html", events=res.get("events"), graphs={
+        "categories": [],
+        "counts": []
+    })
 
 
 @application.route("/login", methods=["GET", "POST"])
