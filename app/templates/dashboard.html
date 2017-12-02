@@ -4,7 +4,7 @@
 {% block body %}
 
             <div class="container ">
-               {% if graphs.counts <= 0 or graphs.count == [] %}
+               {% if len(graphs.counts) <= 0 or graphs.count == [] %}
          <div class="ui warning message">
     <div class="header">No Events</div>
     <p>Looks like You haven't Posted any event yet , To get started Click <a href="{{ url_for("create_event") }}">Here.</a></p>
