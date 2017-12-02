@@ -6,7 +6,7 @@ from app import application
 import requests
 
 
-BASE_URL = "http://localhost:5000/api/v1"
+BASE_URL = "http://localhost:8000/api/v1"
 
 
 def protected_route(f):
