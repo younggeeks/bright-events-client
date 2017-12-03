@@ -10,17 +10,15 @@
     <link rel="stylesheet" href="{{ url_for('static',filename='material_assets/material.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static',filename='css/bootstrap-grid.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static',filename='custom/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/alertify.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static',filename='font-awesome/css/font-awesome.min.css') }}">
-    <script src="{{ url_for('static',filename='material_assets/material.min.js') }}"></script>
-    <script src="{{ url_for('static',filename='js/angular.min.js') }}"></script>
-    <script src="{{ url_for('static',filename='js/custom.js') }}"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 <body>
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
     <header class="mdl-layout__header">
         <div class="mdl-layout__header-row">
-            <img class="bright-logo" src="{{ url_for('static',filename='img/logo.png') }}">
+            <a href="/"><img class="bright-logo" src="{{ url_for('static',filename='img/logo.png') }}"></a>
             <!--this will pull the rest of the menu to the right-->
             <div class="mdl-layout-spacer"></div>
             <!-- When user is logged in dashboard will appear otherwise they will see login -->
@@ -36,10 +34,10 @@
     <div class="mdl-layout__drawer"><span class="mdl-layout-title">Top Categories</span>
         <hr>
         <nav class="mdl-navigation">
-            <a class="mdl-navigation__link" href=""><i class="fa fa-free-code-camp"></i> Code Camps</a>
-            <a class="mdl-navigation__link" href=""><i class="fa fa-meetup"></i> Meetup</a>
-            <a class="mdl-navigation__link" href=""><i class="fa fa-graduation-cap"></i> Graduation Party</a>
-            <a class="mdl-navigation__link" href=""><i class="fa fa-code"></i> Bootcamps</a>
+            <a class="mdl-navigation__link" href="/events/Code Camps"><i class="fa fa-free-code-camp"></i> Code Camps</a>
+            <a class="mdl-navigation__link" href="/events/Meetup"><i class="fa fa-meetup"></i> Meetup</a>
+            <a class="mdl-navigation__link" href="/events/Hackathon"><i class="fa fa-code-fork"></i> Hackathon</a>
+            <a class="mdl-navigation__link" href="/events/Bootcamps"><i class="fa fa-code"></i> Bootcamp</a>
         </nav>
     </div>
 
@@ -55,6 +53,9 @@
     </main>
 </div>
 
+
+ <script src="{{ url_for('static',filename='material_assets/material.min.js') }}"></script>
+{% include "alert.html" %}
 
 </body>
 </html>

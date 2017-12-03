@@ -1,0 +1,11 @@
+    <script src="{{ url_for('static',filename='js/alertify.min.js') }}"></script>
+{% with messages = get_flashed_messages(with_categories=["warn"]) %}
+  {% if messages %}
+    {% for category, message in messages %}
+        <script>
+        alertify.warning("{{ message }}", 'warning', 5, function(){  console.log('dismissed'); });
+        </script>
+    {% endfor %}
+
+  {% endif %}
+{% endwith %}

@@ -6,7 +6,8 @@ from app import application
 import requests
 
 
-BASE_URL = "https://bright-event.herokuapp.com/api/v1"
+# BASE_URL = "https://bright-event.herokuapp.com/api/v1"
+BASE_URL = "http://localhost:5000/api/v1"
 
 
 def protected_route(f):
@@ -18,10 +19,52 @@ def protected_route(f):
     return decorated_function
 
 
+def unprotected(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if "username" in session:
+            flash("You are Already Logged In")
+            return redirect(url_for('dashboard'))
+        return f(*args, **kwargs)
+    return decorated_function
+
+
 @application.route("/")
 def index():
     res = requests.get("{}/events".format(BASE_URL)).json()
     return render_template("index.html", events=res.get("events"))
+
+
+@application.route("/events/<category>")
+def get_by_category(category):
+    print("{}/category/{}/events".format(BASE_URL, category))
+    res = requests.get("{}/category/{}/events".format(BASE_URL, category))
+    print(res.json())
+    if res.status_code == 200:
+        resp_json = res.json()
+        print("this is it", resp_json)
+        return render_template("search_results.html", events=resp_json["events"], category=category)
+
+    return render_template("search_results.html", events=[], category=category)
+
+
+@application.route("/events/<event_id>/rsvp")
+@protected_route
+def rsvp(event_id):
+    if "username" in session:
+        res = requests.post("{}/events/{}/rsvp".format(BASE_URL, event_id), json={
+            "user_id": session["id"]
+        })
+    if res.status_code == 200:
+        resp_json = res.json()
+        flash(resp_json["message"], "success")
+        return redirect(url_for("index"))
+    if res.status_code == 400:
+        resp_json = res.json()
+        flash(resp_json["message"], "warn")
+        return redirect(url_for("index"))
+
+    return redirect(url_for("index"))
 
 
 @application.route("/dashboard")
@@ -47,6 +90,7 @@ def dashboard():
 
 
 @application.route("/login", methods=["GET", "POST"])
+@unprotected
 def login():
     if request.method == 'POST':
         email = request.form.get("email")
@@ -66,6 +110,7 @@ def login():
 
 
 @application.route("/signup", methods=["GET", "POST"])
+@unprotected
 def signup():
     if request.method == "POST":
         full_name = request.form.get("full_name")
@@ -94,6 +139,7 @@ def create_session(response):
 
 
 @application.route("/logout", methods=["GET"])
+@protected_route
 def logout():
     if "username" in session:
         session.pop("username")
@@ -253,6 +299,26 @@ def filter_by_category(category):
         return redirect(url_for("get_my_events"))
 
     return render_template("view_event.html", event=res.json()["event"])
+
+
+@application.route("/user/settings/<user_id>", methods=["GET", "POST"])
+def settings(user_id):
+    print(user_id)
+    if user_id == "":
+        flash("ID is not found")
+        return redirect(url_for("settings"))
+    if request.method == "POST":
+        res = requests.post("{}/auth/reset-password".format(BASE_URL),
+                            json={
+                                "email": request.form.get("email"),
+                                "password": request.form.get("password")
+                            })
+
+        if res.status_code == 404:
+            flash("{}".format(res.json()['message']))
+            return redirect(url_for("settings"))
+
+    return render_template("settings.html")
 
 
 @application.route("/events/<event_id>")

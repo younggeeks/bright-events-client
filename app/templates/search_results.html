@@ -3,7 +3,10 @@
 {% block title %}Home{% endblock %}
 {% block body %}
 
+    <h5 class="centered mdl-color-text--accent">Events Found In {{ category }} </h5>
+    <hr>
 <div class="row " >
+
     {% for event in events %}
     <div class="col-md-4 bottom-spacing-20 " >
 
@@ -14,7 +17,7 @@
                             <div class="mdl-card__supporting-text" >
                                 {{ event.description }}
                             </div>
-                            <div class="mdl-card__actions mdl-card--border">
+                               <div class="mdl-card__actions mdl-card--border">
                                 <a href="{{ url_for("view_event", event_id=event.id) }}" class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect">
                                     <span class="fa fa-location-arrow"></span> Read More
                                 </a>
@@ -22,20 +25,12 @@
 
                                  </div>
 
+
                             <div class="mdl-card__menu">
-                                {% if "username" in session and event.user == session["username"] %}
-                               <button id="event-menu" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" disabled>
-                               <a href="{{ url_for("rsvp", event_id=event.id) }}" > <i class="fa fa-thumbs-o-up"></i></a>
-{#                                    <i class="material-icons">favorite</i>#}
-
-                               </button >
-
-                                {% else %}
-                                <a href="{{ url_for("rsvp", event_id=event.id) }}" id="event-menu" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+                                <button id="event-menu" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
                                     <i class="fa fa-thumbs-o-up"></i>
 {#                                    <i class="material-icons">favorite</i>#}
-                                </a>
-                            {% endif %}
+                                </button>
                             </div>
                         </div>
                     </div>

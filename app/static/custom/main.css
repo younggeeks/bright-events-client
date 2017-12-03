@@ -1,68 +1,78 @@
-.hasErrored{
-    color:red;
+.hasErrored {
+    color: red;
     border: 0.5px solid darkred;
     border-radius: 3px;
 }
-.bright-logo{
+
+.bright-logo {
     width: 100px;
-    height:auto;
+    height: auto;
     border-radius: 4px;
 }
-.centered{
+
+.centered {
     text-align: center !important;
 }
-.auth-box{
-   margin-top: 40px;
+
+.auth-box {
+    margin-top: 40px;
     border: 0.8px solid darkgray;
     border-radius: 4px
 }
-.link-button{
-    margin:10px 0 20px 0 ;
+
+.link-button {
+    margin: 10px 0 20px 0;
 }
-.mdl-card__title{
+
+.mdl-card__title {
     opacity: 1.4;
 }
+
 .event-card .mdl-card__title {
     color: white;
     height: 70px;
-    background: url('assets/img/wedding.jpg') center ;
+    background: url('assets/img/wedding.jpg') center;
 }
 
-#eventsChart{
+#eventsChart {
     width: 90% !important;
     height: auto !important;
 }
-.table-link{
+
+.table-link {
     text-decoration: none;
 }
-.bottom-spacing-20{
-    margin-bottom:20px;
-}
-.top-spacing-10{
-    margin-top:10px;
+
+.bottom-spacing-20 {
+    margin-bottom: 20px;
 }
 
-
-  /*#map {*/
-        /*height: 900px;*/
-         /*width: 900px;*/
-      /*}*/
-      /* Optional: Makes the sample page fill the window. */
-      html, body {
-        height: 100%;
-          width:100%;
-        margin: 0;
-        padding: 0;
-      }
-      .map-card{
-          width:100% !important;
-          height: 400px;
-          color: white !important;
-      }
-h4.mdl-card__title-text{
-    color:white !important
+.top-spacing-10 {
+    margin-top: 10px;
 }
-.mdl-card__title-text{
+
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.map-card {
+    width: 100% !important;
+    height: 400px;
+    color: white !important;
+}
+
+h4.mdl-card__title-text {
+    color: white !important
+}
+
+.mdl-card__title-text {
     font-size: 19px;
     font-weight: 200;
+}
+
+body > div > div > header > div.mdl-layout__header-row > nav > div > ul > li:nth-child(1) > a {
+    text-decoration: none;
 }

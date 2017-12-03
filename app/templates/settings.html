@@ -1,0 +1,44 @@
+{% extends "authenticated_master.html" %}
+{% block title %}Home{% endblock %}
+{% block body %}
+    <div class="container">
+        <div class="col-md-12 map-card top-spacing-10">
+            <div class="map-card mdl-card mdl-shadow--2dp" style="width: 100%; height: auto">
+                <div class="mdl-card__title mdl-color--accent">
+                    <h4 class="mdl-card__title-text centered "><i class="fa fa-user-circle"></i> Samwel Charles</h4>
+                </div>
+                <div class="mdl-card__supporting-text" style="width: 100%">
+                    Change Password
+                </div>
+                <div class="mdl-card__actions mdl-card--border">
+                    <form class="ui form" action="{{ url_for("settings", user_id=session["id"]) }}" method="POST">
+                        <div class="field">
+                            <div class="two fields">
+                                <div class="field">
+                                    <input type="text" name="email" placeholder="Your Current Email ">
+                                </div>
+                                <div class="field">
+                                    <input type="password" name="password" placeholder="Your New Password">
+                                </div>
+                                <div class="field">
+                                    <button class="mdl-button mdl-button--accent mdl-button--raised">Noma sanas</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+
+
+                <div class="mdl-card__menu .hidden-sm-down">
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+{% endblock %}
+
+

@@ -35,9 +35,8 @@
             <br>
             {% with messages = get_flashed_messages() %}
               {% if messages %}
-                {% for message in messages %}
-                 <p class="centered error" ng-if="hasErrored">{{ message }}</p>
-                {% endfor %}
+                 <p class="centered error" ng-if="hasErrored">{{ messages[0] }}</p>
+
               {% endif %}
             {% endwith %}
 

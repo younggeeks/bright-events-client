@@ -1,74 +1,74 @@
-
-            {% extends "authenticated_master.html" %}
+{% extends "authenticated_master.html" %}
 {% block title %}Home{% endblock %}
 {% block body %}
 
-            <div class="container" ng-app="bright-events">
-    <div class="col-md-6 offset-md-3 col-10 offset-1 auth-box mdl-shadow--3dp">
-        <h5 class="centered">Create New Event</h5>
-        <hr>
-        <form  action="{{ url_for('create_event') }}" method="post" class="ui form">
+    <div class="container" ng-app="bright-events">
+        <div class="col-md-6 offset-md-3 col-10 offset-1 auth-box mdl-shadow--3dp">
+            <h5 class="centered">Create New Event</h5>
+            <hr>
+            <form action="{{ url_for('create_event') }}" method="post" class="ui form">
 
-            <div class="ui  fluid large  input">
-                <input type="text" name="name" placeholder="Enter Event's Name"  >
-            </div>
-            <br>
-            <div class="ui large fluid  input">
-                <input type="text" name="address" placeholder="Enter Event Address (Location)"  >
-            </div>
-            <br>
-           <div class="field">
-                <label>Event Description</label>
-                <textarea name="description" rows="2"></textarea>
-           </div>
-            <div class="ui large fluid  input">
-                <input type="date" name="start_date" placeholder=""  >
-            </div>
-            <br>
-            <div class="ui large fluid  input">
-                <input type="date" name="end_date" placeholder=""  >
-            </div>
-            <br>
-            <div class="ui large fluid  input">
-                <input type="text" name="price" placeholder="Enter Price (Ksh)" >
-            </div>
-            <br>
+                <div class="ui  fluid large  input">
+                    <input type="text" name="name" placeholder="Enter Event's Name">
+                </div>
+                <br>
+                <div class="ui large fluid  input">
+                    <input type="text" name="address" placeholder="Enter Event Address (Location)">
+                </div>
+                <br>
+                <div class="field">
+                    <label>Event Description</label>
+                    <textarea name="description" rows="2"></textarea>
+                </div>
+                <div class="ui large fluid  input">
+                    <input type="date" name="start_date" placeholder="">
+                </div>
+                <br>
+                <div class="ui large fluid  input">
+                    <input type="date" name="end_date" placeholder="">
+                </div>
+                <br>
+                <div class="ui large fluid  input">
+                    <input type="text" name="price" placeholder="Enter Price (Ksh)">
+                </div>
+                <br>
 
-            <div class="ui fluid search selection dropdown">
-                  <input type="hidden" name="category">
-                  <i class="dropdown icon"></i>
-                  <div class="default text">Select Category</div>
-                  <div class="menu">
-                  <div class="item" >Bootcamps</div>
-                  <div class="item" >Hackathon</div>
-                  <div class="item" >Marathon</div>
-                  </div>
-            </div>
-            <br>
+                <div class="ui fluid search selection dropdown">
+                    <input type="hidden" name="category">
+                    <i class="dropdown icon"></i>
+                    <div class="default text">Select Category</div>
+                    <div class="menu">
+                        <div class="item" data-value="Meetup">Meetup</div>
+                  <div class="item" data-value="Hackathon">Hackathon</div>
+                  <div class="item" data-value="Bootcamps">Bootcamps</div>
+                  <div class="item" data-value="Code Camps">Code Camps</div>
+                    </div>
+                </div>
+                <br>
 
 
-            {% with messages = get_flashed_messages() %}
-              {% if messages %}
-                {% for message in messages %}
-                 <p class="centered error" ng-if="hasErrored">{{ message }}</p>
-                {% endfor %}
-              {% endif %}
-            {% endwith %}
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <p class="centered error" ng-if="hasErrored">{{ message }}</p>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
 
-            <div class="centered">
-                <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
-                    Post New Event
-                </button>
-            </div>
-            <br>
-        </form>
+                <div class="centered">
+                    <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
+                        Post New Event
+                    </button>
+                </div>
+                <br>
+            </form>
+        </div>
     </div>
-</div>
- <script>
- $(document).ready(function(){
-        $('.selection.dropdown').dropdown();
-    })
-</script>
+    <script>
+        $(document).ready(function () {
+            $('.selection.dropdown').dropdown();
+        })
+    </script>
 
 
 {% endblock %}
